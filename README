@@ -1,6 +1,3 @@
-rinatl
-hila953
-
 Differences between the two UMLs: first difference is about the Perlin Noise class. At first, we thought the 
 function should be in the Terrain class. This is because it is relevant to create the terrain, 
 a process that implemented there. But, as we saw the implementation of the function, which includes a lot of 

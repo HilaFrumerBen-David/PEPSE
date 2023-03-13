@@ -1,0 +1,49 @@
+rinatl
+hila953
+
+Differences between the two UMLs: first difference is about the Perlin Noise class. At first, we thought the 
+function should be in the Terrain class. This is because it is relevant to create the terrain, 
+a process that implemented there. But, as we saw the implementation of the function, which includes a lot of 
+"helper functions", we decided that making a class will be better. That way, the Terrain class is not responsible
+of the Perlin noise creation. We put the class in the util package because this is its purpose - helper classes to
+program. 
+Another difference is in the Leaf class- at first we thought to make a static function create, which will create 
+leaves on tree. But, thinking again, we thought the best would be to make a constructor to the class (will be 
+explained). because 
+the leaves need to have collisions for example (special handling when collides with ground). 
+
+Explanation about the infinite world: 
+
+In the start, we have range to create the ground and trees, and the range changes afterwards following the 
+camera.We also emove objects, the romove is also depends on the camera, range and the screen dimensions (also 
+the creation of the ground and trees depends on these).
+For the Avatar we placed the camera to follow it therefore throughout the game the avatar will be in the player's
+screen. Also, we set the coordinates of the energy counter and the daynight objects to be with the camera, so
+they will also be on the player's screen.
+
+
+As the avatar moves through the game, we check when it approaches the left and right border.
+Before we see the next area on the screen, we create more trees and more ground to the
+right/left of our existing area, and increase the right/left bound.
+To keep our amount of managed objects fairly low, we will remove trees and ground on the opposite side when we 
+do this increase.
+
+
+
+Explanation about the trees package: We thought that in this package will be all the code relevant to the creation
+of trees in the game. But, a tree has two main parts - trunk and leaves. Therefore, we decided to make a class Tree 
+that creates the trunk and leaves. We implemented two other classes - trunk and leaf. In the trunk file, we 
+implemented static function that creates a trunk. In the Leaf class, we decided that it will inherit from 
+GameObject (as will be explained).Then, in the Tree class we create the trunk and leaves. 
+
+Explanation about design desicions: As was mentioned, in the beginning we thought that the Leaf class should
+have a static function create, that will manage the creation. But, we decided that that the class should inherit
+from GameObject. We thought it would be better because a leaf has special behavior when collided with the ground
+for example. The way we thought is good to implement it is by overriding the OnCollisionEnter function of 
+GameObject. Also, we thought it fits in the meaning - a leaf "is a" GameObject. It has special behavior during
+the game, and changing.
+
+Bonus: We decided to implement a numeric energy counter. The way we made it is by creating a new class 
+NumericLifeCouner that extends GameObject. We added a getter in the Avatar class for the energy, and the counter 
+class is responsible on displaying it during the game, with the right value. The value of the counter is 
+updated in the overriding of the update function (of GameObject). 
